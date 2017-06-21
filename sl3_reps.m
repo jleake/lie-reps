@@ -10,15 +10,196 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     33955,        877]
-NotebookOptionsPosition[     33707,        864]
-NotebookOutlinePosition[     34054,        879]
-CellTagsIndexPosition[     34011,        876]
+NotebookDataLength[     45188,       1152]
+NotebookOptionsPosition[     44891,       1138]
+NotebookOutlinePosition[     45224,       1153]
+CellTagsIndexPosition[     45181,       1150]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"CartanMatrix", "[", 
+     RowBox[{"rank_", ",", 
+      RowBox[{"type_:", "A"}]}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "cartanA", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"rank", "\[Equal]", "1"}], ",", 
+         RowBox[{"Return", "[", 
+          RowBox[{"{", 
+           RowBox[{"{", "2", "}"}], "}"}], "]"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"cartanA", "=", 
+        RowBox[{
+         RowBox[{"DiagonalMatrix", "[", 
+          RowBox[{"ConstantArray", "[", 
+           RowBox[{"2", ",", "rank"}], "]"}], "]"}], " ", "+", " ", 
+         RowBox[{"DiagonalMatrix", "[", 
+          RowBox[{
+           RowBox[{"ConstantArray", "[", 
+            RowBox[{
+             RowBox[{"-", "1"}], ",", 
+             RowBox[{"rank", "-", "1"}]}], "]"}], ",", "1"}], "]"}], " ", "+",
+          " ", 
+         RowBox[{"DiagonalMatrix", "[", 
+          RowBox[{
+           RowBox[{"ConstantArray", "[", 
+            RowBox[{
+             RowBox[{"-", "1"}], ",", 
+             RowBox[{"rank", "-", "1"}]}], "]"}], ",", " ", 
+           RowBox[{"-", "1"}]}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", 
+        RowBox[{"Switch", "[", 
+         RowBox[{
+         "type", ",", "\[IndentingNewLine]", "A", ",", "cartanA", ",", 
+          "\[IndentingNewLine]", "B", ",", 
+          RowBox[{"cartanA", "+", 
+           RowBox[{"SparseArray", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"rank", "-", "1"}], ",", "rank"}], "}"}], "\[Rule]", 
+               
+               RowBox[{"-", "1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"rank", ",", "rank"}], "}"}]}], "]"}]}], ",", 
+          "\[IndentingNewLine]", "C", ",", 
+          RowBox[{"cartanA", "+", 
+           RowBox[{"SparseArray", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"rank", ",", 
+                 RowBox[{"rank", "-", "1"}]}], "}"}], "\[Rule]", 
+               RowBox[{"-", "1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"rank", ",", "rank"}], "}"}]}], "]"}]}], ",", 
+          "\[IndentingNewLine]", "D", ",", 
+          RowBox[{"cartanA", "+", 
+           RowBox[{"SparseArray", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"rank", "-", "1"}], ",", "rank"}], "}"}], "\[Rule]",
+                 "1"}], ",", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"rank", ",", 
+                  RowBox[{"rank", "-", "1"}]}], "}"}], "\[Rule]", "1"}], ",", 
+               
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"rank", "-", "2"}], ",", "rank"}], "}"}], "\[Rule]", 
+                RowBox[{"-", "1"}]}], ",", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"rank", ",", 
+                  RowBox[{"rank", "-", "2"}]}], "}"}], "\[Rule]", 
+                RowBox[{"-", "1"}]}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"rank", ",", "rank"}], "}"}]}], "]"}]}], ",", 
+          "\[IndentingNewLine]", "G", ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"rank", "\[Equal]", "2"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"2", ",", 
+                RowBox[{"-", "1"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "3"}], ",", "2"}], "}"}]}], "}"}]}], "]"}]}], 
+         "\[IndentingNewLine]", "]"}], "]"}], ";"}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"PositiveRoots", "[", "cartanmatrix_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "rank", ",", "simpleroots", ",", "posroots", ",", "currroots", ",", 
+        "nextroots", ",", "n"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"rank", "=", 
+        RowBox[{"Length", "[", "cartanmatrix", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"simpleroots", "=", 
+        RowBox[{"IdentityMatrix", "[", "rank", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"posroots", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"currroots", "=", "simpleroots"}], ";", "\[IndentingNewLine]", 
+       
+       RowBox[{"nextroots", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"While", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "currroots", "]"}], ">", "0"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{"add", " ", "new", " ", "roots"}], " ", "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"nextroots", "=", 
+           RowBox[{"Union", "[", 
+            RowBox[{"nextroots", ",", "\[IndentingNewLine]", 
+             RowBox[{"Flatten", "[", 
+              RowBox[{
+               RowBox[{"Table", "[", 
+                RowBox[{
+                 RowBox[{"croot", "+", 
+                  RowBox[{"k", "*", "sroot"}]}], ",", "\[IndentingNewLine]", 
+                 RowBox[{"{", 
+                  RowBox[{"sroot", ",", "simpleroots"}], "}"}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"{", 
+                  RowBox[{"croot", ",", "currroots"}], "}"}], ",", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"{", 
+                  RowBox[{"k", ",", 
+                   RowBox[{"-", 
+                    RowBox[{"Dot", "[", 
+                    RowBox[{"croot", ",", 
+                    RowBox[{"cartanmatrix", ".", "sroot"}]}], "]"}]}]}], 
+                  "}"}]}], "\[IndentingNewLine]", "]"}], ",", "2"}], "]"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "update", " ", "roots", " ", "lists", " ", "for", " ", "next", " ",
+             "iteration"}], " ", "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"nextroots", "=", 
+           RowBox[{"Complement", "[", 
+            RowBox[{"nextroots", ",", "posroots"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"posroots", "=", 
+           RowBox[{"Union", "[", 
+            RowBox[{"posroots", ",", "currroots"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"currroots", "=", "nextroots"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"nextroots", "=", 
+           RowBox[{"{", "}"}]}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "posroots", "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"WeylGroup", "[", 
@@ -43,7 +224,7 @@ Cell[BoxData[{
      RowBox[{
       RowBox[{"If", "[", 
        RowBox[{
-        RowBox[{"type", "\[Equal]", "A"}], ",", "\n", 
+        RowBox[{"type", "\[Equal]", "A"}], ",", "\[IndentingNewLine]", 
         RowBox[{
          RowBox[{"If", "[", 
           RowBox[{
@@ -57,7 +238,7 @@ Cell[BoxData[{
                RowBox[{"{", 
                 RowBox[{"{", 
                  RowBox[{"-", "1"}], "}"}], "}"}]}], "}"}], "]"}], ";"}]}], 
-          "]"}], ";", "\n", 
+          "]"}], ";", "\[IndentingNewLine]", 
          RowBox[{"permmatrices", " ", "=", " ", 
           RowBox[{"Table", "[", 
            RowBox[{
@@ -70,7 +251,7 @@ Cell[BoxData[{
               RowBox[{"Permutations", "[", 
                RowBox[{"Range", "[", 
                 RowBox[{"rank", "+", "1"}], "]"}], "]"}]}], "}"}]}], "]"}]}], 
-         ";", "\n", 
+         ";", "\[IndentingNewLine]", 
          RowBox[{"If", "[", 
           RowBox[{
            RowBox[{"type", "\[Equal]", "A"}], ",", "\[IndentingNewLine]", 
@@ -89,7 +270,7 @@ Cell[BoxData[{
                  RowBox[{"ConstantArray", "[", 
                   RowBox[{"0", ",", "rank"}], "]"}], "}"}], ",", 
                 RowBox[{"IdentityMatrix", "[", "rank", "]"}]}], "]"}]}]}], 
-            ";", "\n", 
+            ";", "\[IndentingNewLine]", 
             RowBox[{"cbcoord2root", " ", "=", " ", 
              RowBox[{"LowerTriangularize", "[", 
               RowBox[{"ConstantArray", "[", 
@@ -97,7 +278,7 @@ Cell[BoxData[{
                 RowBox[{"{", 
                  RowBox[{"rank", ",", 
                   RowBox[{"rank", "+", "1"}]}], "}"}]}], "]"}], "]"}]}], ";", 
-            "\n", 
+            "\[IndentingNewLine]", 
             RowBox[{"cartanmatrix", " ", "=", " ", 
              RowBox[{
               RowBox[{"DiagonalMatrix", "[", 
@@ -116,9 +297,9 @@ Cell[BoxData[{
                  RowBox[{
                   RowBox[{"-", "1"}], ",", 
                   RowBox[{"rank", "-", "1"}]}], "]"}], ",", " ", 
-                RowBox[{"-", "1"}]}], "]"}]}]}], ";", "\n", 
+                RowBox[{"-", "1"}]}], "]"}]}]}], ";", "\[IndentingNewLine]", 
             RowBox[{"If", "[", 
-             RowBox[{"inrootbasis", ",", "\n", 
+             RowBox[{"inrootbasis", ",", "\[IndentingNewLine]", 
               RowBox[{
                RowBox[{"Return", "[", 
                 RowBox[{"Table", "[", 
@@ -127,7 +308,7 @@ Cell[BoxData[{
                   ",", " ", 
                   RowBox[{"{", 
                    RowBox[{"P", ",", "permmatrices"}], "}"}]}], "]"}], "]"}], 
-               ";"}], ",", "\n", 
+               ";"}], ",", "\[IndentingNewLine]", 
               RowBox[{
                RowBox[{"Return", "[", 
                 RowBox[{"Table", "[", 
@@ -135,12 +316,13 @@ Cell[BoxData[{
                   RowBox[{
                   "cartanmatrix", ".", "cbcoord2root", ".", "P", ".", 
                    "cbroot2coord", ".", 
-                   RowBox[{"Inverse", "[", "cartanmatrix", "]"}]}], ",", " ", 
+                   RowBox[{"Inverse", "[", "cartanmatrix", "]"}]}], ",", 
+                  "\[IndentingNewLine]", 
                   RowBox[{"{", 
                    RowBox[{"P", ",", "permmatrices"}], "}"}]}], "]"}], "]"}], 
-               ";"}]}], "\n", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], 
-         ";"}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
-      "\[IndentingNewLine]", 
+               ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}],
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"If", "[", 
        RowBox[{
         RowBox[{
@@ -329,7 +511,8 @@ Cell[BoxData[{
              "cobmatrix"}], ",", 
             RowBox[{"{", 
              RowBox[{"P", ",", "group"}], "}"}]}], "]"}], "]"}], ";"}]}], 
-       "\[IndentingNewLine]", "]"}]}]}], "\n", "]"}]}], ";"}], "\n", 
+       "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -345,27 +528,108 @@ Cell[BoxData[{
           RowBox[{"w", ",", "weights"}], "}"}], ",", 
          RowBox[{"{", 
           RowBox[{"m", ",", "weylgroup"}], "}"}]}], "]"}], ",", "1"}], "]"}], 
-     "]"}]}], ";"}], "\n"}], "\n", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ComputeDimension", "[", 
+     RowBox[{
+     "inweightdata_", ",", "weight_", ",", "highestweight_", ",", 
+      "invariantform_", ",", "positiveroots_", ",", "delta_"}], "]"}], " ", ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"weightdata", ",", "dim", ",", "currweight", ",", "i"}], "}"}],
+       ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"inweightdata", "[", "weight", "]"}], "\[NotEqual]", "0"}], 
+         ",", 
+         RowBox[{"Return", "[", "inweightdata", "]"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"weightdata", "=", "inweightdata"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"dim", "=", "0"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"For", "[", 
+        RowBox[{
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"i", "\[LessEqual]", 
+          RowBox[{"Length", "[", "positiveroots", "]"}]}], ",", 
+         RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"currweight", "=", "weight"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"While", "[", 
+           RowBox[{
+            RowBox[{"MemberQ", "[", 
+             RowBox[{
+              RowBox[{"Keys", "[", "weightdata", "]"}], ",", 
+              RowBox[{"currweight", "+=", 
+               RowBox[{"positiveroots", "[", 
+                RowBox[{"[", "i", "]"}], "]"}]}]}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"weightdata", "=", 
+              RowBox[{"ComputeDimension", "[", 
+               RowBox[{
+               "weightdata", ",", "currweight", ",", "highestweight", ",", 
+                "invariantform", ",", "positiveroots", ",", "delta"}], 
+               "]"}]}], ";", "\[IndentingNewLine]", 
+             RowBox[{"dim", "+=", 
+              RowBox[{
+               RowBox[{"weightdata", "[", "currweight", "]"}], "*", 
+               RowBox[{"Dot", "[", 
+                RowBox[{"currweight", ",", 
+                 RowBox[{"invariantform", ".", 
+                  RowBox[{"positiveroots", "[", 
+                   RowBox[{"[", "i", "]"}], "]"}]}]}], "]"}]}]}], ";"}]}], 
+           "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+        "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"dim", "*=", 
+        RowBox[{"2", "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"Dot", "[", 
+            RowBox[{
+             RowBox[{"highestweight", "+", "delta"}], ",", 
+             RowBox[{"invariantform", ".", 
+              RowBox[{"(", 
+               RowBox[{"highestweight", "+", "delta"}], ")"}]}]}], "]"}], "-", 
+           RowBox[{"Dot", "[", 
+            RowBox[{
+             RowBox[{"weight", "+", "delta"}], ",", 
+             RowBox[{"invariantform", ".", 
+              RowBox[{"(", 
+               RowBox[{"weight", "+", "delta"}], ")"}]}]}], "]"}]}], 
+          ")"}]}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"weightdata", "[", "weight", "]"}], "=", "dim"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "weightdata", "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], "\n"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
     RowBox[{"DominantWeights", "[", 
      RowBox[{"highestweight_", ",", "cartanmatrix_"}], "]"}], " ", ":=", " ", 
+    
     RowBox[{"Module", "[", 
      RowBox[{
       RowBox[{"{", 
-       RowBox[{"cbhighestweight", ",", "cbdomweights"}], "}"}], ",", "\n", 
+       RowBox[{"cbhighestweight", ",", "cbdomweights"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
       RowBox[{"(*", " ", 
        RowBox[{
         RowBox[{"Change", " ", "to", " ", "root", " ", "coordinates"}], " ", 
         "-", " ", 
         RowBox[{"should", " ", "this", " ", "be", " ", 
-         RowBox[{"transpose", "?"}]}]}], " ", "*)"}], "\n", 
+         RowBox[{"transpose", "?"}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
       RowBox[{
        RowBox[{"cbhighestweight", "=", 
         RowBox[{
          RowBox[{"Inverse", "[", "cartanmatrix", "]"}], ".", 
-         "highestweight"}]}], ";", "\n", 
+         "highestweight"}]}], ";", "\[IndentingNewLine]", 
        RowBox[{"cbdomweights", "=", 
         RowBox[{"Flatten", "[", 
          RowBox[{
@@ -377,7 +641,8 @@ Cell[BoxData[{
                RowBox[{"w", ",", "0"}], "}"}], ",", 
               RowBox[{"{", 
                RowBox[{"w", ",", "cbhighestweight"}], "}"}]}], "]"}], ",", 
-            RowBox[{"-", "1"}]}], "]"}], ",", "1"}], "]"}]}], ";", "\n", 
+            RowBox[{"-", "1"}]}], "]"}], ",", "1"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{
          RowBox[{
@@ -385,7 +650,7 @@ Cell[BoxData[{
           "coordinates"}], ",", " ", 
          RowBox[{
           RowBox[{"remove", " ", "non"}], "-", "dominant"}]}], " ", "*)"}], 
-       "\n", 
+       "\[IndentingNewLine]", 
        RowBox[{"Return", "[", 
         RowBox[{"DeleteCases", "[", 
          RowBox[{
@@ -402,7 +667,8 @@ Cell[BoxData[{
                 RowBox[{"[", "1", "]"}], "]"}], ",", 
                RowBox[{"x", "[", 
                 RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "<", "0"}]}], 
-           ")"}]}], "]"}], "]"}], ";"}]}], "\n", "]"}]}], ";"}], "\n"}], "\n", 
+           ")"}]}], "]"}], "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], 
+   ";"}], "\n"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -412,13 +678,15 @@ Cell[BoxData[{
       RowBox[{"{", 
        RowBox[{
        "minw", ",", " ", "maxw", ",", " ", "hexagonshells", ",", 
-        "triangleshells"}], "}"}], ",", "\n", 
+        "triangleshells"}], "}"}], ",", "\[IndentingNewLine]", 
       RowBox[{
        RowBox[{"minw", "=", 
-        RowBox[{"Min", "[", "highestweight", "]"}]}], ";", "\n", 
+        RowBox[{"Min", "[", "highestweight", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
        RowBox[{"maxw", "=", 
-        RowBox[{"Max", "[", "highestweight", "]"}]}], ";", "\n", 
-       RowBox[{"hexagonshells", " ", "=", " ", 
+        RowBox[{"Max", "[", "highestweight", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"hexagonshells", " ", 
         RowBox[{"Association", "[", 
          RowBox[{"Table", "[", 
           RowBox[{
@@ -428,7 +696,7 @@ Cell[BoxData[{
              RowBox[{"i", "+", "1"}]}], "]"}], ",", " ", 
            RowBox[{"{", 
             RowBox[{"i", ",", "0", ",", 
-             RowBox[{"minw", "-", "1"}]}], "}"}]}], "]"}], "]"}]}], ";", "\n", 
+             RowBox[{"minw", "-", "1"}]}], "}"}]}], "]"}], "]"}]}], ";", 
        RowBox[{"triangleshells", " ", "=", " ", 
         RowBox[{"Association", "[", 
          RowBox[{"Table", "[", 
@@ -444,11 +712,11 @@ Cell[BoxData[{
              RowBox[{"minw", "+", "1"}]}], "]"}], ",", " ", 
            RowBox[{"{", 
             RowBox[{"i", ",", "minw", ",", "maxw", ",", "3"}], "}"}]}], "]"}],
-          "]"}]}], ";", "\n", 
+          "]"}]}], ";", "\[IndentingNewLine]", 
        RowBox[{"Return", " ", "[", 
         RowBox[{"Join", "[", 
          RowBox[{"hexagonshells", ",", "triangleshells"}], "]"}], "]"}], 
-       ";"}]}], "\n", "]"}]}], ";"}], "\n", "\n", 
+       ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], "\n", "\n", 
   RowBox[{"(*", " ", 
    RowBox[{"Function", " ", "which", " ", "takes", " ", 
     RowBox[{"a", " ", "'"}], 
@@ -633,59 +901,62 @@ Cell[BoxData[{
    "*)"}]}], "\n", 
  RowBox[{
   RowBox[{
-   RowBox[{"PlotWeights", "[", "weights_", "]"}], ":=", 
-   RowBox[{"Module", "[", 
-    RowBox[{
-     RowBox[{"{", "cobmatrix", "}"}], ",", "\n", 
+   RowBox[{
+    RowBox[{"PlotWeights", "[", "weights_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
      RowBox[{
-      RowBox[{"cobmatrix", "=", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], ",", "0"}], "}"}], 
-         ",", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"1", "/", "2"}], ",", "1"}], "}"}]}], "}"}]}], ";", "\n", 
-      RowBox[{"Return", "[", "\n", 
-       RowBox[{"(*", 
-        RowBox[{"ListPlot", "[", 
+      RowBox[{"{", "cobmatrix", "}"}], ",", "\n", 
+      RowBox[{
+       RowBox[{"cobmatrix", "=", 
+        RowBox[{"{", 
          RowBox[{
-          RowBox[{"Transpose", "[", 
-           RowBox[{"cobmatrix", ".", 
-            RowBox[{"Transpose", "[", 
-             RowBox[{"Keys", "[", "weights", "]"}], "]"}]}], "]"}], ",", "\n", 
-          RowBox[{
+          RowBox[{"{", 
            RowBox[{
-            RowBox[{"PlotStyle", "->", 
-             RowBox[{"PointSize", "[", "#", "]"}]}], "&"}], "/@", 
-           RowBox[{"(", 
             RowBox[{
-             RowBox[{"Values", "[", "weights", "]"}], "*", "0.01"}], 
-            ")"}]}]}], "]"}], "*)"}], "\n", 
-       RowBox[{"BubbleChart", "[", 
-        RowBox[{
-         RowBox[{"Table", "[", 
-          RowBox[{
-           RowBox[{"Append", "[", 
-            RowBox[{
-             RowBox[{"cobmatrix", ".", "pt"}], ",", 
-             RowBox[{"weights", "[", "pt", "]"}]}], "]"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"pt", ",", 
-             RowBox[{"Keys", "[", "weights", "]"}]}], "}"}]}], "]"}], ",", 
-         " ", 
-         RowBox[{"Frame", "->", "False"}], ",", 
-         RowBox[{"Axes", "->", "True"}], ",", 
-         RowBox[{"AxesOrigin", "->", 
-          RowBox[{
+             RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], ",", "0"}], "}"}], 
+          ",", 
+          RowBox[{"{", 
            RowBox[{
+            RowBox[{"1", "/", "2"}], ",", "1"}], "}"}]}], "}"}]}], ";", "\n", 
+       
+       RowBox[{"Return", "[", "\n", 
+        RowBox[{"(*", 
+         RowBox[{"ListPlot", "[", 
+          RowBox[{
+           RowBox[{"Transpose", "[", 
+            RowBox[{"cobmatrix", ".", 
+             RowBox[{"Transpose", "[", 
+              RowBox[{"Keys", "[", "weights", "]"}], "]"}]}], "]"}], ",", 
+           "\n", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"PlotStyle", "->", 
+              RowBox[{"PointSize", "[", "#", "]"}]}], "&"}], "/@", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"Values", "[", "weights", "]"}], "*", "0.01"}], 
+             ")"}]}]}], "]"}], "*)"}], "\n", 
+        RowBox[{"BubbleChart", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Append", "[", 
+             RowBox[{
+              RowBox[{"cobmatrix", ".", "pt"}], ",", 
+              RowBox[{"weights", "[", "pt", "]"}]}], "]"}], ",", 
             RowBox[{"{", 
-             RowBox[{"0", ",", "0"}], "}"}], "AspectRatio"}], "->", "1"}]}]}],
-         "]"}], "\n", "]"}], ";"}]}], "\n", "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+             RowBox[{"pt", ",", 
+              RowBox[{"Keys", "[", "weights", "]"}]}], "}"}]}], "]"}], ",", 
+          " ", 
+          RowBox[{"Frame", "->", "False"}], ",", 
+          RowBox[{"Axes", "->", "True"}], ",", 
+          RowBox[{"AxesOrigin", "->", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0"}], "}"}], "AspectRatio"}], "->", 
+            "1"}]}]}], "]"}], "\n", "]"}], ";"}]}], "\n", "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"InvariantForm", "[", 
@@ -860,11 +1131,14 @@ Cell[BoxData[{
    3.707003148319113*^9}, {3.707003180576088*^9, 3.7070031833177705`*^9}, {
    3.707003359181158*^9, 3.707003368104472*^9}, {3.707003431047845*^9, 
    3.7070036411189556`*^9}, {3.707003690145973*^9, 3.7070037319726763`*^9}, {
-   3.707003929012559*^9, 3.707003929465646*^9}}]
+   3.707003929012559*^9, 3.707003929465646*^9}, {3.707006144934412*^9, 
+   3.707006234847766*^9}, {3.707063969668655*^9, 
+   3.7070640193249197`*^9}},ExpressionUUID->"8355cd29-e255-44ce-831f-\
+eafd1575a663"]
 },
-WindowSize->{770, 513},
-WindowMargins->{{196, Automatic}, {0, Automatic}},
-FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+WindowSize->{796, 843},
+WindowMargins->{{Automatic, 0}, {0, Automatic}},
+FrontEndVersion->"11.1 for Linux x86 (64-bit) (April 18, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -878,10 +1152,9 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 33145, 842, 2729, "Input"]
+Cell[558, 20, 44329, 1116, 4805, "Input", "ExpressionUUID" -> \
+"8355cd29-e255-44ce-831f-eafd1575a663"]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
