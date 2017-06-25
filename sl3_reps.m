@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     49024,       1242]
-NotebookOptionsPosition[     48777,       1229]
-NotebookOutlinePosition[     49122,       1244]
-CellTagsIndexPosition[     49079,       1241]
+NotebookDataLength[     48919,       1240]
+NotebookOptionsPosition[     48622,       1226]
+NotebookOutlinePosition[     48955,       1241]
+CellTagsIndexPosition[     48912,       1238]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -68,6 +68,7 @@ Cell[BoxData[{
                RowBox[{"{", 
                 RowBox[{
                  RowBox[{"rank", "-", "1"}], ",", "rank"}], "}"}], "\[Rule]", 
+               
                RowBox[{"-", "1"}]}], "}"}], ",", 
              RowBox[{"{", 
               RowBox[{"rank", ",", "rank"}], "}"}]}], "]"}]}], ",", 
@@ -155,6 +156,7 @@ Cell[BoxData[{
        RowBox[{"posroots", "=", 
         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
        RowBox[{"currroots", "=", "simpleroots"}], ";", "\[IndentingNewLine]", 
+       
        RowBox[{"nextroots", "=", 
         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
        RowBox[{"While", "[", 
@@ -220,15 +222,7 @@ Cell[BoxData[{
       RowBox[{
       "permmatrices", ",", "cbroot2coord", ",", "cbcoord2root", ",", 
        "cartanmatrix", ",", "signs", ",", "group", ",", "cobmatrix"}], "}"}], 
-     ",", "\n", 
-     RowBox[{"(*", 
-      RowBox[{
-       RowBox[{"If", "[", 
-        RowBox[{
-         RowBox[{"type", "=!=", "A"}], ",", " ", 
-         RowBox[{
-          RowBox[{"Return", "[", "Null", "]"}], ";"}]}], "]"}], ";"}], "*)"}],
-      "\[IndentingNewLine]", 
+     ",", "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"If", "[", 
        RowBox[{
@@ -683,6 +677,7 @@ Cell[BoxData[{
    RowBox[{
     RowBox[{"DominantWeights", "[", 
      RowBox[{"highestweight_", ",", "cartanmatrix_"}], "]"}], " ", ":=", " ", 
+    
     RowBox[{"Module", "[", 
      RowBox[{
       RowBox[{"{", 
@@ -736,7 +731,7 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"Min", "[", "x", "]"}], "<", "0"}]}], ")"}]}], "]"}], 
         "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
-  "\n"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -760,7 +755,7 @@ Cell[BoxData[{
          RowBox[{"domweights", ",", 
           RowBox[{"WeylGroup", "[", 
            RowBox[{"rank", ",", "type"}], "]"}]}], "]"}], "]"}], ";"}]}], 
-     "\[IndentingNewLine]", "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -1010,6 +1005,7 @@ Cell[BoxData[{
           RowBox[{"{", 
            RowBox[{
             RowBox[{"1", "/", "2"}], ",", "1"}], "}"}]}], "}"}]}], ";", "\n", 
+       
        RowBox[{"Return", "[", "\n", 
         RowBox[{"(*", 
          RowBox[{"ListPlot", "[", 
@@ -1224,12 +1220,13 @@ Cell[BoxData[{
    3.7070036411189556`*^9}, {3.707003690145973*^9, 3.7070037319726763`*^9}, {
    3.707003929012559*^9, 3.707003929465646*^9}, {3.707006144934412*^9, 
    3.707006234847766*^9}, {3.707063969668655*^9, 3.7070640193249197`*^9}, 
-   3.7072478904172363`*^9},
- ExpressionUUID -> "8355cd29-e255-44ce-831f-eafd1575a663"]
+   3.7072478904172363`*^9, {3.707252002921646*^9, 
+   3.70725200334511*^9}},ExpressionUUID->"8355cd29-e255-44ce-831f-\
+eafd1575a663"]
 },
 WindowSize->{796, 843},
-WindowMargins->{{Automatic, 0}, {0, Automatic}},
-FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+WindowMargins->{{Automatic, 4}, {0, Automatic}},
+FrontEndVersion->"11.1 for Linux x86 (64-bit) (April 18, 2017)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -1243,7 +1240,8 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 48215, 1207, 4339, "Input"]
+Cell[558, 20, 48060, 1204, 5331, "Input", "ExpressionUUID" -> \
+"8355cd29-e255-44ce-831f-eafd1575a663"]
 }
 ]
 *)
