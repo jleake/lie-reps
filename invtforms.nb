@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    820722,      20567]
-NotebookOptionsPosition[    820441,      20553]
-NotebookOutlinePosition[    820818,      20569]
-CellTagsIndexPosition[    820775,      20566]
+NotebookDataLength[    825198,      20671]
+NotebookOptionsPosition[    824916,      20657]
+NotebookOutlinePosition[    825293,      20673]
+CellTagsIndexPosition[    825250,      20670]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -19769,7 +19769,7 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"Min", "[", "x", "]"}], "<", "0"}]}], ")"}]}], "]"}], 
         "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\n", 
+  "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -19793,7 +19793,7 @@ Cell[BoxData[{
          RowBox[{"domweights", ",", 
           RowBox[{"WeylGroup", "[", 
            RowBox[{"rank", ",", "type"}], "]"}]}], "]"}], "]"}], ";"}]}], 
-     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+     "\[IndentingNewLine]", "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -20501,7 +20501,101 @@ Cell[BoxData[{
           RowBox[{"Keys", "[", "rep", "]"}]}], "}"}]}], "\[IndentingNewLine]",
         "]"}], ";", "\[IndentingNewLine]", 
       RowBox[{"Return", "[", "dualrep", "]"}], ";"}]}], "\[IndentingNewLine]",
-     "]"}]}], ";"}]}], "Input",
+     "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NFoldTensorProductRep", "[", 
+    RowBox[{"rep_", ",", "n_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"tensorrep", ",", "rank"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"rank", "=", 
+       RowBox[{"Length", "[", 
+        RowBox[{
+         RowBox[{"Keys", "[", "rep", "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"tensorrep", "=", 
+       RowBox[{"<|", 
+        RowBox[{
+         RowBox[{"ConstantArray", "[", 
+          RowBox[{"0", ",", "rank"}], "]"}], "\[Rule]", "1"}], "|>"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Do", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"tensorrep", "=", 
+          RowBox[{"TensorProductRep", "[", 
+           RowBox[{"tensorrep", ",", "rep"}], "]"}]}], ";"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "1", ",", "n"}], "}"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "tensorrep", "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IsSubRep", "[", 
+    RowBox[{"rep1_", ",", "rep2_", ",", "rank_", ",", "type_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"highestweights1", ",", "highestweights2"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"highestweights1", "=", 
+       RowBox[{"DecomposeRep", "[", 
+        RowBox[{"rep1", ",", "rank", ",", "type"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"highestweights2", "=", 
+       RowBox[{"DecomposeRep", "[", 
+        RowBox[{"rep2", ",", "rank", ",", "type"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"highestweights1", "\[Equal]", "highestweights2"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Print", "[", "\"\<These reps are equal\>\"", "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Return", "[", "True", "]"}], ";"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"SubsetQ", "[", 
+             RowBox[{"highestweights1", ",", "highestweights2"}], "]"}], 
+            "\[Equal]", "True"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+            "Print", "[", "\"\<The second rep is a subrep of the first\>\"", 
+             "]"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"Return", "[", "True", "]"}], ";"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"SubsetQ", "[", 
+                RowBox[{"highestweights2", ",", "highestweights1"}], "]"}], 
+               "\[Equal]", "True"}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+               "Print", "[", 
+                "\"\<The first rep is a subrep of the second\>\"", "]"}], ";",
+                "\[IndentingNewLine]", 
+               RowBox[{"Return", "[", "True", "]"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{
+               "Print", "[", "\"\<Neither rep is a subrep of the other\>\"", 
+                "]"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"Return", "[", "False", "]"}], ";"}]}], 
+             "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+          "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
  CellChangeTimes->{
   3.7069963045317106`*^9, {3.7069964216319723`*^9, 3.706996641437299*^9}, {
    3.706997413141328*^9, 3.706997432618388*^9}, {3.706997476722333*^9, 
@@ -20549,7 +20643,17 @@ Cell[BoxData[{
    3.708185814984045*^9, 3.7081858343020153`*^9}, {3.708185918889127*^9, 
    3.7081859215535746`*^9}, {3.7081860323312693`*^9, 3.708186052275858*^9}, {
    3.7081872272993603`*^9, 3.7081872321830263`*^9}, {3.7081873145400434`*^9, 
-   3.708187317935786*^9}}]
+   3.708187317935786*^9}, {3.7081969192480316`*^9, 3.7081970336449213`*^9}, {
+   3.7081971099131565`*^9, 3.708197215471932*^9}, {3.7081972650035863`*^9, 
+   3.708197343708436*^9}, {3.708197605870901*^9, 3.7081976147704334`*^9}, {
+   3.7081976801518216`*^9, 3.708197685671442*^9}, {3.7081978147264805`*^9, 
+   3.7081978149527383`*^9}, {3.7081978593840976`*^9, 
+   3.7081979343086014`*^9}, {3.708198004199445*^9, 3.7081980925470114`*^9}, {
+   3.7081981633732653`*^9, 3.708198260205248*^9}, {3.7081982956959577`*^9, 
+   3.7081983617325573`*^9}, {3.7081984210946407`*^9, 
+   3.7081984558412895`*^9}, {3.708198528331766*^9, 3.708198631331065*^9}, {
+   3.7081986616812663`*^9, 3.708198702550232*^9}, {3.7081987456594048`*^9, 
+   3.7081988435532074`*^9}}]
 },
 WindowSize->{1264, 637},
 WindowMargins->{{-8, Automatic}, {Automatic, 0}},
@@ -20568,7 +20672,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 819879, 20531, 9835, "Input"]
+Cell[558, 20, 824354, 20635, 10225, "Input"]
 }
 ]
 *)
