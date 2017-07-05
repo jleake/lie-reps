@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    825198,      20671]
-NotebookOptionsPosition[    824916,      20657]
-NotebookOutlinePosition[    825293,      20673]
-CellTagsIndexPosition[    825250,      20670]
+NotebookDataLength[    829290,      20782]
+NotebookOptionsPosition[    828770,      20760]
+NotebookOutlinePosition[    829148,      20776]
+CellTagsIndexPosition[    829105,      20773]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -19769,7 +19769,7 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"Min", "[", "x", "]"}], "<", "0"}]}], ")"}]}], "]"}], 
         "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
-  "\n"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -19793,7 +19793,7 @@ Cell[BoxData[{
          RowBox[{"domweights", ",", 
           RowBox[{"WeylGroup", "[", 
            RowBox[{"rank", ",", "type"}], "]"}]}], "]"}], "]"}], ";"}]}], 
-     "\[IndentingNewLine]", "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -20595,6 +20595,47 @@ Cell[BoxData[{
                RowBox[{"Return", "[", "False", "]"}], ";"}]}], 
              "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
           "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ComputeDimension", "[", 
+    RowBox[{"highestweight_", ",", "rank_", ",", "type_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"B", ",", "list", ",", "posroots"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"B", "=", 
+       RowBox[{"InvariantForm", "[", 
+        RowBox[{"rank", ",", "type"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"posroots", "=", 
+       RowBox[{
+        RowBox[{"PositiveRoots", "[", 
+         RowBox[{"CartanMatrix", "[", 
+          RowBox[{"rank", ",", "type"}], "]"}], "]"}], ".", 
+        RowBox[{"CartanMatrix", "[", 
+         RowBox[{"rank", ",", "type"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"list", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Dot", "[", 
+           RowBox[{
+            RowBox[{"highestweight", "+", 
+             RowBox[{"ConstantArray", "[", 
+              RowBox[{"1", ",", "rank"}], "]"}]}], ",", 
+            RowBox[{"B", ".", "root"}]}], "]"}], "/", 
+          RowBox[{"Dot", "[", 
+           RowBox[{
+            RowBox[{"ConstantArray", "[", 
+             RowBox[{"1", ",", "rank"}], "]"}], ",", 
+            RowBox[{"B", ".", "root"}]}], "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"root", ",", "posroots"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"Times", "  ", "@@", " ", "list"}], "]"}], ";"}]}], 
     "\[IndentingNewLine]", "]"}]}], ";"}]}], "Input",
  CellChangeTimes->{
   3.7069963045317106`*^9, {3.7069964216319723`*^9, 3.706996641437299*^9}, {
@@ -20653,10 +20694,72 @@ Cell[BoxData[{
    3.7081983617325573`*^9}, {3.7081984210946407`*^9, 
    3.7081984558412895`*^9}, {3.708198528331766*^9, 3.708198631331065*^9}, {
    3.7081986616812663`*^9, 3.708198702550232*^9}, {3.7081987456594048`*^9, 
-   3.7081988435532074`*^9}}]
+   3.7081988435532074`*^9}, {3.7082123278428316`*^9, 
+   3.7082123335779114`*^9}, {3.708212439553115*^9, 3.708212463161709*^9}, {
+   3.7082161378059425`*^9, 3.708216199423175*^9}, {3.708216238704291*^9, 
+   3.708216410712335*^9}, {3.7082165569732018`*^9, 3.708216571772396*^9}, {
+   3.7082166113167963`*^9, 3.7082166174707594`*^9}, {3.7082166980362635`*^9, 
+   3.70821670181944*^9}, {3.708216844709794*^9, 3.7082168562389617`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ComputeDimension", "[", 
+   RowBox[{
+    RowBox[{"{", "n", "}"}], ",", "1", ",", "A"}], "]"}], "//", 
+  "Simplify"}]], "Input",
+ CellChangeTimes->{{3.7082165806702623`*^9, 3.7082165887090073`*^9}, {
+  3.708216862108925*^9, 3.708216936968124*^9}, {3.7082169774471507`*^9, 
+  3.708217065653697*^9}, {3.7082193869879465`*^9, 3.7082193907037196`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"1", "+", "n"}]], "Output",
+ CellChangeTimes->{
+  3.7082167073049765`*^9, {3.708216860085112*^9, 3.7082169049359045`*^9}, 
+   3.708216937435175*^9, {3.708216978512413*^9, 3.708217029383417*^9}, {
+   3.7082170619664526`*^9, 3.7082170659708323`*^9}, 3.7082193911403704`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ComputeDimension", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"n", ",", "m"}], "}"}], ",", "2", ",", "G"}], "]"}], "//", 
+  "Simplify"}]], "Input",
+ CellChangeTimes->{{3.708216680744567*^9, 3.708216684477026*^9}, {
+  3.7082170801528826`*^9, 3.7082171118018208`*^9}, {3.708217169856242*^9, 
+  3.7082172017978673`*^9}, {3.708219393140585*^9, 3.7082193943751655`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "120"], " ", 
+  RowBox[{"(", 
+   RowBox[{"1", "+", "m"}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{"1", "+", "n"}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{"2", "+", "m", "+", "n"}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{"3", "+", 
+    RowBox[{"2", " ", "m"}], "+", "n"}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{"4", "+", 
+    RowBox[{"3", " ", "m"}], "+", "n"}], ")"}], " ", 
+  RowBox[{"(", 
+   RowBox[{"5", "+", 
+    RowBox[{"3", " ", "m"}], "+", 
+    RowBox[{"2", " ", "n"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{
+  3.7082166849192677`*^9, {3.708217088723998*^9, 3.7082171120513926`*^9}, {
+   3.708217179066117*^9, 3.7082172021528*^9}, 3.708219394734499*^9}]
+}, Open  ]]
 },
-WindowSize->{1264, 637},
-WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+WindowSize->{1280, 637},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
 Magnification:>0.8 Inherited,
 FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
 StyleDefinitions->"Default.nb"
@@ -20672,7 +20775,15 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 824354, 20635, 10225, "Input"]
+Cell[558, 20, 826335, 20681, 10315, "Input"],
+Cell[CellGroupData[{
+Cell[826918, 20705, 382, 8, 24, "Input"],
+Cell[827303, 20715, 295, 5, 24, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[827635, 20725, 406, 9, 24, "Input"],
+Cell[828044, 20736, 710, 21, 69, "Output"]
+}, Open  ]]
 }
 ]
 *)
