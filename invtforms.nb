@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    841314,      21127]
-NotebookOptionsPosition[    840067,      21081]
-NotebookOutlinePosition[    840413,      21096]
-CellTagsIndexPosition[    840370,      21093]
+NotebookDataLength[    848486,      21335]
+NotebookOptionsPosition[    846385,      21261]
+NotebookOutlinePosition[    846752,      21277]
+CellTagsIndexPosition[    846709,      21274]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -20027,39 +20027,56 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{
-    RowBox[{"PlotWeights", "[", "weights_", "]"}], ":=", 
+    RowBox[{"PlotWeights", "[", 
+     RowBox[{"weights_", ",", "type_"}], "]"}], ":=", 
     RowBox[{"Module", "[", 
      RowBox[{
-      RowBox[{"{", "cobmatrix", "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{"cobmatrix", ",", "simpleroot1", ",", "cos"}], "}"}], ",", 
+      "\n", " ", 
       RowBox[{
        RowBox[{"cobmatrix", "=", 
-        RowBox[{"{", 
+        RowBox[{"MatrixPower", "[", 
          RowBox[{
-          RowBox[{"{", 
+          RowBox[{"InvariantForm", "[", 
+           RowBox[{"2", ",", "type"}], "]"}], ",", 
+          RowBox[{"1", "/", "2"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"simpleroot1", "=", 
+        RowBox[{
+         RowBox[{"CartanMatrix", "[", 
+          RowBox[{"2", ",", "type"}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"cos", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Dot", "[", 
            RowBox[{
+            RowBox[{"cobmatrix", ".", "simpleroot1"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"1", ",", "0"}], "}"}]}], "]"}], "/", 
+          RowBox[{"Norm", "[", 
+           RowBox[{"cobmatrix", ".", "simpleroot1"}], "]"}]}], "//", "N"}]}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"cobmatrix", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Inverse", "[", 
+           RowBox[{"{", 
             RowBox[{
-             RowBox[{"Sqrt", "[", "3", "]"}], "/", "2"}], ",", "0"}], "}"}], 
-          ",", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"1", "/", "2"}], ",", "1"}], "}"}]}], "}"}]}], ";", "\n", 
+             RowBox[{"{", 
+              RowBox[{"cos", ",", 
+               RowBox[{"Sqrt", "[", 
+                RowBox[{"1", "-", 
+                 RowBox[{"cos", "^", "2"}]}], "]"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", 
+                RowBox[{"Sqrt", "[", 
+                 RowBox[{"1", "-", 
+                  RowBox[{"cos", "^", "2"}]}], "]"}]}], ",", "cos"}], "}"}]}],
+             "}"}], "]"}], ".", "cobmatrix"}], "//", "N"}]}], ";", "\n", 
+       "\[IndentingNewLine]", 
        RowBox[{"Return", "[", "\n", 
-        RowBox[{"(*", 
-         RowBox[{"ListPlot", "[", 
-          RowBox[{
-           RowBox[{"Transpose", "[", 
-            RowBox[{"cobmatrix", ".", 
-             RowBox[{"Transpose", "[", 
-              RowBox[{"Keys", "[", "weights", "]"}], "]"}]}], "]"}], ",", 
-           "\n", 
-           RowBox[{
-            RowBox[{
-             RowBox[{"PlotStyle", "->", 
-              RowBox[{"PointSize", "[", "#", "]"}]}], "&"}], "/@", 
-            RowBox[{"(", 
-             RowBox[{
-              RowBox[{"Values", "[", "weights", "]"}], "*", "0.01"}], 
-             ")"}]}]}], "]"}], "*)"}], "\n", 
         RowBox[{"BubbleChart", "[", 
          RowBox[{
           RowBox[{"Table", "[", 
@@ -20282,8 +20299,8 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"{", 
       RowBox[{
-      "highestweights", ",", "cartanmatrix", ",", "irrep", ",", "weight"}], 
-      "}"}], ",", "\[IndentingNewLine]", 
+      "highestweights", ",", "cartanmatrix", ",", "irrep", ",", "weights", 
+       ",", " ", "bad"}], "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{
       RowBox[{"cartanmatrix", "=", 
        RowBox[{"CartanMatrix", "[", 
@@ -20291,6 +20308,7 @@ Cell[BoxData[{
       RowBox[{"highestweights", "=", 
        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
       RowBox[{"weights", "=", "inweights"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"bad", "=", "0"}], ";", "\[IndentingNewLine]", 
       "\[IndentingNewLine]", 
       RowBox[{"While", "[", 
        RowBox[{
@@ -20313,13 +20331,39 @@ Cell[BoxData[{
          RowBox[{"Do", "[", "\[IndentingNewLine]", 
           RowBox[{
            RowBox[{
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"KeyExistsQ", "[", 
+                RowBox[{"weights", ",", "key"}], "]"}], "\[Equal]", "False"}],
+               ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"bad", "=", "1"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"Break", "[", "]"}], ";"}]}], "\[IndentingNewLine]", 
+             "]"}], ";", "\[IndentingNewLine]", 
             RowBox[{
              RowBox[{"weights", "[", "key", "]"}], "-=", 
-             RowBox[{"irrep", "[", "key", "]"}]}], ";"}], ",", 
-           "\[IndentingNewLine]", 
+             RowBox[{"irrep", "[", "key", "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"weights", "[", "key", "]"}], "<", "0"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"bad", "=", "1"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"Break", "[", "]"}], ";"}]}], "\[IndentingNewLine]", 
+             "]"}], ";"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
            RowBox[{"{", 
             RowBox[{"key", ",", 
              RowBox[{"Keys", "[", "irrep", "]"}]}], "}"}]}], 
+          "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"bad", "\[Equal]", "1"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"Print", "[", "\"\<This is not a rep!\>\"", "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Return", "[", "False", "]"}], ";"}]}], 
           "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
          RowBox[{"Do", "[", "\[IndentingNewLine]", 
           RowBox[{
@@ -20807,7 +20851,14 @@ Cell[BoxData[{
    3.7082849416373463`*^9, 3.70828494932406*^9}, {3.7082849939640427`*^9, 
    3.708285013002104*^9}, {3.708285178377798*^9, 3.708285206722002*^9}, {
    3.70828544901232*^9, 3.7082854496956387`*^9}, {3.708285743704873*^9, 
-   3.708285778073704*^9}, {3.708285808948703*^9, 3.70828582914006*^9}},
+   3.708285778073704*^9}, {3.708285808948703*^9, 3.70828582914006*^9}, 
+   3.708304357426874*^9, {3.7083048010200796`*^9, 3.70830480839847*^9}, 
+   3.7083048742592273`*^9, {3.7083049248156137`*^9, 3.70830498704001*^9}, {
+   3.708305121349484*^9, 3.7083051293946033`*^9}, {3.7083052089821835`*^9, 
+   3.708305212249873*^9}, {3.708305297665696*^9, 3.7083053363877435`*^9}, {
+   3.7083054362711825`*^9, 3.7083054372836995`*^9}, {3.7083054740877004`*^9, 
+   3.708305495460285*^9}, 3.7083055275460706`*^9, {3.708305659204235*^9, 
+   3.7083057276315336`*^9}, {3.708306100841843*^9, 3.708306126786725*^9}},
  ExpressionUUID -> "7f4dff81-339f-4bce-9742-e0aebec6682a"],
 
 Cell[CellGroupData[{
@@ -21077,10 +21128,140 @@ Cell[BoxData["\<\"These reps are equal\"\>"], "Print",
 Cell[BoxData["True"], "Output",
  CellChangeTimes->{{3.708284343985607*^9, 3.708284374521299*^9}},
  ExpressionUUID -> "c4ba28e8-95fa-4445-8461-fe4feb259d94"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "DecomposeRep", "]"}]], "Input",
+ CellChangeTimes->{{3.708304413605333*^9, 3.708304429949247*^9}, {
+  3.708305238859292*^9, 3.7083052424725447`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FindAHighestWeight", "[", 
+  RowBox[{
+   RowBox[{"HighestWeightRep", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}], ",", "2", ",", "A"}], "]"}], ",", 
+   RowBox[{"CartanMatrix", "[", 
+    RowBox[{"2", ",", "C"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7083050423596535`*^9, 3.7083050629533286`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", "0"}], "}"}]], "Output",
+ CellChangeTimes->{3.7083050633479757`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DecomposeRep", "[", 
+  RowBox[{
+   RowBox[{"NthSymmetricPowerRep", "[", 
+    RowBox[{
+     RowBox[{"HighestWeightRep", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"2", ",", "0"}], "}"}], ",", "2", ",", "C"}], "]"}], ",", 
+     "2"}], "]"}], ",", "2", ",", "C"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7083051430497437`*^9, 3.7083051617851887`*^9}, {
+   3.708305355246498*^9, 3.708305382807623*^9}, {3.708305737396499*^9, 
+   3.7083058060009584`*^9}, 3.708306132824588*^9}],
+
+Cell[BoxData["\<\"This is not a rep!\"\>"], "Print",
+ CellChangeTimes->{3.7083058076548862`*^9, 3.7083061345017796`*^9}],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{{3.7083051563674192`*^9, 3.7083051711531644`*^9}, {
+   3.708305227124051*^9, 3.7083052512440815`*^9}, {3.708305321312583*^9, 
+   3.7083053473127985`*^9}, 3.7083054504978085`*^9, 3.7083055108421345`*^9, {
+   3.7083057341876955`*^9, 3.7083057444649773`*^9}, {3.70830579335332*^9, 
+   3.7083058076568613`*^9}, 3.708306134503254*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"r", "=", 
+  RowBox[{"HighestWeightRep", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"1", ",", "0"}], "}"}], ",", "2", ",", "A"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.708306136296938*^9, 3.7083061476352406`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"1", ",", "0"}], "}"}], "\[Rule]", "1"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], "\[Rule]", "1"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{"-", "1"}]}], "}"}], "\[Rule]", "1"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.708306147962906*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"r", "[", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0"}], "}"}], "]"}], "=", "2"}]], "Input",
+ CellChangeTimes->{{3.708306150229515*^9, 3.708306160000477*^9}}],
+
+Cell[BoxData["2"], "Output",
+ CellChangeTimes->{3.7083061603194838`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["r"], "Input",
+ CellChangeTimes->{3.708306161829324*^9}],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"1", ",", "0"}], "}"}], "\[Rule]", "2"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", "1"}], ",", "1"}], "}"}], "\[Rule]", "1"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{"-", "1"}]}], "}"}], "\[Rule]", "1"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.7083061621434402`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DecomposeRep", "[", 
+  RowBox[{"r", ",", "2", ",", "A"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7083061639411445`*^9, 3.7083061709594965`*^9}}],
+
+Cell[BoxData["\<\"This is not a rep!\"\>"], "Print",
+ CellChangeTimes->{3.708306171476771*^9}],
+
+Cell[BoxData["False"], "Output",
+ CellChangeTimes->{3.708306171477788*^9}]
 }, Open  ]]
 },
-WindowSize->{1264, 637},
+WindowSize->{1253, 637},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification->0.75,
 FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
 StyleDefinitions->"Default.nb"
 ]
@@ -21095,43 +21276,68 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 831045, 20790, 16984, "Input"],
+Cell[558, 20, 833622, 20841, 10779, "Input"],
 Cell[CellGroupData[{
-Cell[831628, 20814, 382, 8, 30, "Input"],
-Cell[832013, 20824, 295, 5, 30, "Output"]
+Cell[834205, 20865, 382, 8, 23, "Input"],
+Cell[834590, 20875, 295, 5, 23, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[832345, 20834, 406, 9, 30, "Input"],
-Cell[832754, 20845, 710, 21, 45, "Output"]
+Cell[834922, 20885, 406, 9, 23, "Input"],
+Cell[835331, 20896, 710, 21, 35, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[833501, 20871, 279, 6, 30, "Input"],
-Cell[833783, 20879, 367, 10, 30, "Output"]
+Cell[836078, 20922, 279, 6, 23, "Input"],
+Cell[836360, 20930, 367, 10, 23, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[834187, 20894, 389, 10, 30, "Input"],
-Cell[834579, 20906, 1278, 43, 30, "Output"]
+Cell[836764, 20945, 389, 10, 23, "Input"],
+Cell[837156, 20957, 1278, 43, 23, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[835894, 20954, 624, 13, 30, "Input"],
-Cell[836521, 20969, 529, 10, 30, "Output"]
+Cell[838471, 21005, 624, 13, 23, "Input"],
+Cell[839098, 21020, 529, 10, 23, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[837087, 20984, 302, 7, 30, "Input"],
-Cell[837392, 20993, 533, 16, 30, "Output"]
+Cell[839664, 21035, 302, 7, 23, "Input"],
+Cell[839969, 21044, 533, 16, 23, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[837962, 21014, 276, 6, 30, "Input"],
-Cell[838241, 21022, 848, 27, 30, "Output"]
+Cell[840539, 21065, 276, 6, 23, "Input"],
+Cell[840818, 21073, 848, 27, 23, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[839126, 21054, 584, 16, 30, "Input"],
-Cell[839713, 21072, 179, 2, 22, "Print"],
-Cell[839895, 21076, 156, 2, 30, "Output"]
+Cell[841703, 21105, 584, 16, 23, "Input"],
+Cell[842290, 21123, 179, 2, 18, "Print"],
+Cell[842472, 21127, 156, 2, 23, "Output"]
+}, Open  ]],
+Cell[842643, 21132, 186, 3, 23, "Input"],
+Cell[CellGroupData[{
+Cell[842854, 21139, 361, 9, 23, "Input"],
+Cell[843218, 21150, 117, 3, 23, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[843372, 21158, 511, 12, 23, "Input"],
+Cell[843886, 21172, 120, 1, 18, "Print"],
+Cell[844009, 21175, 381, 5, 23, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[844427, 21185, 245, 6, 23, "Input"],
+Cell[844675, 21193, 450, 15, 23, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[845162, 21213, 192, 5, 23, "Input"],
+Cell[845357, 21220, 72, 1, 23, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[845466, 21226, 69, 1, 23, "Input"],
+Cell[845538, 21229, 452, 15, 23, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[846027, 21249, 168, 3, 23, "Input"],
+Cell[846198, 21254, 94, 1, 18, "Print"],
+Cell[846295, 21257, 74, 1, 56, "Output"]
 }, Open  ]]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
